@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Digital Clock with Alarm</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      background: #222;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    #clock {
+      font-size: 50px;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background: #00adb5;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #008c91;
+    }
+
+    #status {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div id="clock">00:00:00</div>
+
+  <input type="time" id="alarmTime">
+  <button onclick="setAlarm()">Set Alarm</button>
+
+  <div id="status">No alarm set</div>
+</div>
+
+<audio id="alarmSound" src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3"></audio>
+
+<script>
+  let alarmTime = null;
+  let alarmTimeout = null;
+
+  function updateClock() {
+    const now = new Date();
+    let h = String(now.getHours()).padStart(2, '0');
+    let m = String(now.getMinutes()).padStart(2, '0');
+    let s = String(now.getSeconds()).padStart(2, '0');
+
+    document.getElementById("clock").innerText = `${h}:${m}:${s}`;
+
+    if (alarmTime === `${h}:${m}`) {
+      document.getElementById("alarmSound").play();
+      document.getElementById("status").innerText = "⏰ Alarm Ringing!";
+      alarmTime = null;
+    }
+  }
+
+  setInterval(updateClock, 1000);
+
+  function setAlarm() {
+    const input = document.getElementById("alarmTime").value;
+
+    if (!input) {
+      alert("Please select a time!");
+      return;
+    }
+
+    alarmTime = input;
+    document.getElementById("status").innerText = `Alarm set for ${alarmTime}`;
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Manager</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f4f4;
+}
+
+/* Navbar */
+nav {
+    background: #333;
+    padding: 15px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 10px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+nav a:hover {
+    color: #00bcd4;
+}
+
+/* Sections */
+section {
+    padding: 40px;
+    text-align: center;
+}
+
+#home {
+    background: #00bcd4;
+    color: white;
+}
+
+.event-card {
+    background: white;
+    padding: 20px;
+    margin: 15px;
+    display: inline-block;
+    width: 250px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px gray;
+}
+
+/* Form */
+form {
+    background: white;
+    padding: 20px;
+    display: inline-block;
+    border-radius: 10px;
+}
+
+input, select {
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+}
+
+button {
+    padding: 10px 20px;
+    background: #00bcd4;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #008c9e;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#events">Events</a>
+    <a href="#booking">Booking</a>
+</nav>
+
+<section id="home">
+    <h1>Welcome to Event Manager</h1>
+    <p>Plan and book your favorite events easily!</p>
+</section>
+
+<section id="events">
+    <h2>Upcoming Events</h2>
+    <div id="eventList"></div>
+</section>
+
+<section id="booking">
+    <h2>Book Your Event</h2>
+    <form id="bookingForm">
+        <input type="text" id="name" placeholder="Your Name" required><br>
+        <select id="eventSelect"></select><br>
+        <input type="date" required><br>
+        <button type="submit">Book Now</button>
+    </form>
+    <p id="message"></p>
+</section>
+
+<script>
+// Event Data
+const events = [
+    { name: "Music Concert", date: "2026-06-10" },
+    { name: "Tech Conference", date: "2026-07-05" },
+    { name: "Wedding Expo", date: "2026-08-15" }
+];
+
+// Display Events
+const eventList = document.getElementById("eventList");
+const eventSelect = document.getElementById("eventSelect");
+
+events.forEach(event => {
+    // Card
+    const div = document.createElement("div");
+    div.className = "event-card";
+    div.innerHTML = `<h3>${event.name}</h3><p>Date: ${event.date}</p>`;
+    eventList.appendChild(div);
+
+    // Dropdown
+    const option = document.createElement("option");
+    option.value = event.name;
+    option.textContent = event.name;
+    eventSelect.appendChild(option);
+});
+
+// Booking Form
+document.getElementById("bookingForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const event = eventSelect.value;
+
+    document.getElementById("message").textContent =
+        `Thank you ${name}! Your booking for ${event} is confirmed.`;
+
+    this.reset();
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+<body>
+
+<form onsubmit=data_submit()>
+
+<input type="text" name="name" placeholder="Enter your name...." onfocus= focus_input(this)> <br> <br>
+
+<input type="submit" value="Click me">
+
+</form>
+
+<script>
+
+       function data_submit() {
+                alert("Your details submitted successfully!!!!");
+            }
+
+         function focus_input(element){
+             element.style.backgroundColor="green";
+            }
+
+
+</script>
+</body>
+</html>

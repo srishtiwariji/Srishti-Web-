@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+</head>
+<body>
+<h2> Whether the enter no. is Even or Odd..? </h2>
+<input type="text" id="num" placeholder="Enter no...."><br><br>
+
+<button onclick=even_odd()> Result </button>
+<h3 id="result"> </h3>
+
+<script>
+              function even_odd() {
+                     let no=Number(document.getElementById("num").value);
+                     if(no%2==0){
+                     document.getElementById("result").innerHTML=no+"is Even no.";      
+                           }
+                     else {
+                     document.getElementById("result").innerHTML=no+"is Odd no.";      
+                           }
+    
+
+                               } 
+
+
+
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Image Gallery</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #f4f4f4;
+}
+
+h1 {
+    margin: 20px;
+}
+
+.gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.gallery img {
+    width: 300px;
+    height: 200px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+/* Popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup img {
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 10px;
+}
+
+.popup span {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+}
+</style>
+
+</head>
+<body>
+
+<h1>My Image Gallery</h1>
+
+<div class="gallery">
+    <img src="https://picsum.photos/id/1015/300/200" onclick="openImage(this)">
+    <img src="https://picsum.photos/id/1016/300/200" onclick="openImage(this)">
+    <img src="https://picsum.photos/id/1018/300/200" onclick="openImage(this)">
+    <img src="https://picsum.photos/id/1020/300/200" onclick="openImage(this)">
+</div>
+
+<div id="popup" class="popup">
+    <span onclick="closeImage()">×</span>
+    <img id="popup-img">
+</div>
+
+<script>
+function openImage(img) {
+    let popup = document.getElementById("popup");
+    let popupImg = document.getElementById("popup-img");
+
+    popup.style.display = "flex";
+    popupImg.src = img.src;
+}
+
+function closeImage() {
+    document.getElementById("popup").style.display = "none";
+}
+</script>
+
+</body>
+</html>
